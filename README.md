@@ -29,6 +29,14 @@ types to their LASAL byte sizes, and generates formatted LASAL table rows.
 3. The application converts the supported parameters.
 4. The generated LASAL table file is written to the configured output location.
 
+#### Optional
+If you want to verify the executable run:
+```powershell
+Get-FileHash .\LenzeCsvConverter.exe -Algorithm SHA256
+```
+#### SHA-256
+  `E2682FEC289E54A653C64FA549053D1245E36911B00530749A6362CE7378077B`
+
 ### Python
 
 Run:
