@@ -46,20 +46,20 @@ A Lenze CSV export may contain rows such as:
 
 Index,Subindex,Value,Raw Value,Raw Hex Value,Parameter Type,Text,Unit,Min.,Max.,Factory Setting,Controller Inhibit,Access,Display Value,Display Value Factory Setting,Display parameter,Display factor
 0xBC44,4,2600,2600,0x9896,UNSIGNED_16,Motor parameters: Rated speed,rpm,50,50000,1450,False,RW,,,P320:004,,
-0xBC45,6,"0,25",25,0x0219,UNSIGNED_16,Motor parameters: Rated power,kW,"0,00","655,35",?,False,RW,,,P320:006,"1/100"
-0xBC46,7,400,400,0x0111,UNSIGNED_16,Motor parameters: Rated voltage,V,0,65535,?,False,RW,,,P320:007,,
+0xBC44,6,"0,25",25,0x0219,UNSIGNED_16,Motor parameters: Rated power,kW,"0,00","655,35",?,False,RW,,,P320:006,"1/100"
+0xBC44,7,400,400,0x0111,UNSIGNED_16,Motor parameters: Rated voltage,V,0,65535,?,False,RW,,,P320:007,,
 
 The Lenze export may contain additional metadata before the CSV header. The
 converter searches for the parameter header automatically, so the parameter
-table does not need to start on a fixed line.
+table does not need to start on a fixed line. The values above are random.
 
 Example output
 //-------------------------------------------------------------------------------------------------
 // Group 3: Motor control
 //-------------------------------------------------------------------------------------------------
- 16#2C01$UINT,       004$USINT,          2$USINT,          1430$DINT,                     // Motor parameters: Rated speed in rpm (50 - 50000 rpm)
- 16#2C01$UINT,       006$USINT,          2$USINT,          25$DINT,                       // Motor parameters: Rated power in 1/100 kW (0.00 - 655.35 kW)
- 16#2C01$UINT,       007$USINT,          2$USINT,          400$DINT,                      // Motor parameters: Rated voltage in V (0 - 65535 V)
+ 16#BC44$UINT,       004$USINT,          2$USINT,          2600$DINT,                     // Motor parameters: Rated speed in rpm (50 - 50000 rpm)
+ 16#BC44$UINT,       006$USINT,          2$USINT,          25$DINT,                       // Motor parameters: Rated power in 1/100 kW (0.00 - 655.35 kW)
+ 16#BC44$UINT,       007$USINT,          2$USINT,          400$DINT,                      // Motor parameters: Rated voltage in V (0 - 65535 V)
 
 ## Notes
 Not every Lenze parameter can currently be converted automatically.
