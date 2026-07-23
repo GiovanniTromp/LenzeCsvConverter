@@ -29,9 +29,6 @@ def main() -> None:
     lasal_params: list[LasalParameter] = []
     for param in lenze_parameters:
         lasparam = convert_to_lasal(param)
-        # if (lparam.index == 0x2c01):
-            # print(f"{BLUE}{lparam}{RESET}")
-            # print(f"{GREEN}{param}{RESET}")
         lasal_params.append(lasparam)
 
     output_groups : dict[
@@ -49,6 +46,14 @@ def main() -> None:
     key = lenze_parser.get_group_name(2)
 
     build_output_file(output_groups, output_path)
+    print(f"Output file created at: {output_path}.")
 
 if __name__ == "__main__":
-    main() 
+    try:
+        main()
+
+    except Exception as exc:
+        print("\nConversion failed:")
+        print(exc)
+
+    input("Press Enter to exit...")
