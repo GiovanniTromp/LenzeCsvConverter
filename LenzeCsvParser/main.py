@@ -20,9 +20,10 @@ BASE_DIR = Path(__file__).resolve().parent
 # )
 
 def main() -> None:
+    print("Navigate to an input file.")
     input_path = select_input_file() 
     output_path = input_path.with_name(
-        input_path.stem + "_lasal.txt"
+        "lasal_" + input_path.stem + ".txt"
     )
     lenze_parameters = read_parameter_csv(input_path)
 
@@ -42,8 +43,6 @@ def main() -> None:
             output_groups[key] = []
 
         output_groups[key].append(p)
-    
-    key = lenze_parser.get_group_name(2)
 
     build_output_file(output_groups, output_path)
     print(f"Output file created at: {output_path}.")

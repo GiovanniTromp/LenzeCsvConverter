@@ -1,4 +1,9 @@
 .venv/
+.gitignore
+.vscode/
 build/
 dist/
 __pycache__/
+Documentation/
+data/
+*.spec
