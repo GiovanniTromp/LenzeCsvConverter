@@ -25,7 +25,7 @@ def parse_integer(value: str, field_name: str, line_num: int) -> int:
             f"Line {line_num}: field {field_name!r} may not be empty.")
 
     try:
-        return int(text, 0)
+        return int(text, 16) if text.lower().startswith(("0x", "+0x", "-0x")) else int(text, 10)
     except ValueError as exc:
         raise ValueError(
             f"Line {line_num}: invalid integer in {field_name!r}: {value!r}") from exc
@@ -72,10 +72,13 @@ def get_byte_size(parameter_type: str) -> int:
         "INTEGER_64": 8,
         "UNSIGNED_64": 8,
         "BITFIELD_64": 8,
-        "VISIBLE_STRING": 1,  # Assuming 1 byte per character
-        "ARRAY": 1,  # Assuming 1 byte per element
     }
 
+    if parameter_type in ("VISIBLE_STRING", "ARRAY"):
+        raise ValueError(
+            f"{parameter_type} is not supported by this integer LASAL table; "
+            "it requires string or array serialization."
+        )
     if parameter_type not in type_to_size:
         raise ValueError(f"Unknown parameter type: {parameter_type}")
 
